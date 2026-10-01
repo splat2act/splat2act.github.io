@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f9fd">
+  <meta name="description" content="Splat2Act personalizes vision-language-action policies to captured indoor scenes and user objects through an automated real-to-sim-to-real pipeline, without teleoperation demonstrations.">
+  <meta property="og:title" content="Splat2Act — From Captured Scenes to Personalized VLA Manipulation">
+  <meta property="og:description" content="Your space. Your objects. Personalized robot manipulation from a handheld capture.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/splat2act-teaser.webp">
+  <title>Splat2Act · From Captured Scenes to Personalized VLA Manipulation</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" href="assets/fonts/manrope.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/dm-sans.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Skip to the research</a>
+  <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="icon-paper" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h5"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7z"/></symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="icon-expand" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M15 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+  </defs></svg>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="#top" aria-label="Splat2Act home"><span class="splat-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Splat<span>2</span>Act</a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#overview">Overview</a><a href="#method">Method</a><a href="#demos">Demos</a><a href="#results">Results</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+    </div>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#overview">Overview</a><a href="#method">Method</a><a href="#demos">Demos</a><a href="#results">Results</a><a href="#citation">Citation</a></nav>
+    <div class="reading-progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="paper-title">
+      <canvas id="splat-field" aria-hidden="true"></canvas>
+      <div class="hero-content">
+        <h1 id="paper-title">Splat<span class="title-two">2</span>Act</h1>
+        <p class="paper-subtitle">From Captured Scenes to<br><span>Personalized VLA Manipulation</span></p>
+        <div class="authors" aria-label="Authors and affiliations">
+          <span>Xiaomeng Ye<sup>1</sup></span><span>Krishna Jaganathan<sup>1</sup></span><span>Gyubeum Lim<sup>1</sup></span><span>Gunjan Chhablani<sup>2</sup></span><span>Muhammad Zubair Irshad<sup>3</sup></span><span>Zsolt Kira<sup>1</sup></span>
+        </div>
+        <div class="affiliations">
+          <a href="https://www.gatech.edu/" target="_blank" rel="noopener" aria-label="Affiliation 1: Georgia Tech"><sup>1</sup><img class="gt-logo" src="assets/logos/georgia-tech.webp" alt="Georgia Tech" width="175" height="46"></a>
+          <a href="https://waymo.com/" target="_blank" rel="noopener" aria-label="Affiliation 2: Waymo"><sup>2</sup><img class="waymo-logo" src="assets/logos/waymo.webp" alt="Waymo" width="112" height="34"></a>
+          <a href="https://www.tri.global/" target="_blank" rel="noopener" aria-label="Affiliation 3: Toyota Research Institute"><sup>3</sup><img class="tri-logo" src="assets/logos/toyota-research-institute.svg" alt="Toyota Research Institute" width="150" height="49"></a>
+        </div>
+        <div class="hero-actions">
+          <button class="button button-dark" type="button" disabled><svg><use href="#icon-paper"/></svg>Paper (coming soon)</button>
+          <a class="button button-light" href="#demos"><svg><use href="#icon-play"/></svg>See it in action</a>
+        </div>
+      </div>
+      <figure class="hero-teaser">
+        <div class="teaser-art"><img src="assets/images/teaser-scene.webp" alt="A captured indoor lounge flows into a Gaussian-splat simulation of Stretch, then the real robot picking up a personalized object in the same scene." width="980" height="548" fetchpriority="high"></div>
+        <figcaption class="teaser-flow">
+          <div><span class="step-no">01</span><span>Your scene &amp; objects<small>A handheld scan. A few photos.</small></span></div>
+          <span class="teaser-connector" aria-hidden="true"></span>
+          <div><span class="step-no">02</span><span>Personalized simulation<small>Automated tasks and policy training.</small></span></div>
+          <span class="teaser-connector" aria-hidden="true"></span>
+          <div><span class="step-no">03</span><span>Real-world action<small>Deploy in the space you captured.</small></span></div>
+        </figcaption>
+      </figure>
+      <a href="#overview" class="scroll-cue"><span></span>Explore the research</a>
+    </section>
+
+    <section id="overview" class="overview section container">
+      <div class="section-intro reveal">
+        <div><p class="eyebrow">THE IDEA</p><h2>Your space. Your objects.<br><em>A policy that learns both.</em></h2></div>
+        <div class="intro-copy"><p>A generalist robot policy has seen a lot of the world. It still needs to learn <strong>your</strong> world.</p><p>Splat2Act turns a phone scan and object images into a photorealistic digital twin, generates successful pickup demonstrations, and personalizes a vision-language-action policy for the captured environment. All training demonstrations come from simulation.</p><p class="inline-note">Human input ends at scene and object capture.</p></div>
+      </div>
+      <div class="metrics reveal">
+        <div><span class="metric-value">101</span><span class="metric-label">captured indoor scenes</span><span class="metric-note">Building-scale environments</span></div>
+        <div><span class="metric-value">852</span><span class="metric-label">discovered receptacles</span><span class="metric-note">Tables, shelves, and beyond</span></div>
+        <div><span class="metric-value">68,021</span><span class="metric-label">pickup demonstrations</span><span class="metric-note">Generated automatically</span></div>
+        <div><span class="metric-value accent">63.9<span>%</span></span><span class="metric-label">real-world pickup success</span><span class="metric-note">Office · 12 tasks, 36 attempts</span></div>
+      </div>
+      <details class="abstract-details"><summary>Read the abstract<span aria-hidden="true">+</span></summary><div><p>A user who brings a generalist manipulation policy into their home or office wants it to pick up their objects from their shelves, counters, and tables. Yet even a strong generalist like π<sub>0.5</sub> achieves 0% pickup success in our captured deployment scenes without adaptation, and collecting real demonstrations in every user's environment is prohibitively expensive. We present Splat2Act, an automated real-to-sim-to-real pipeline that personalizes a pretrained vision-language-action (VLA) policy to a specific scene and object set using only a handheld phone scan and images of the user's objects. Unlike prior real-to-sim work that reconstructs individual tabletops, Splat2Act operates on building-scale indoor environments: it builds a photorealistic digital twin with 3D Gaussian Splatting and collision geometry, automatically discovers tabletop and non-tabletop receptacles, constructs feasible pickup tasks, and generates successful demonstrations with a privileged simulation oracle, with only scene and object capture required from a human. Applied to 101 scanned campus environments with a median navigable area of 104.87 m² and 7 receptacles, the pipeline yields 852 receptacles and over 68,000 pickup demonstrations. We fine-tune π<sub>0.5</sub> in two stages: Stage 1 adapts to hundreds of public object assets, drawn either from the deployment scene alone or from all 101 scenes; Stage 2 personalizes to the user's own objects on the deployment scene's receptacles. Our strongest personalized policy reaches 62.5% aggregate pickup success in the target scene. Deployed on a real Stretch 3, the same policy achieves 63.9% success on a 12-task subset, closely tracking its 66.7% simulated success on those tasks. We find that Splat2Act is able to adapt to the target scene and objects from only simulation oracle data, suggesting an alternative way for personalizing VLA manipulation training using an automated real-to-sim-to-real approach.</p></div></details>
+    </section>
+
+    <section id="method" class="method section">
+      <div class="container">
+        <div class="section-heading centered reveal"><p class="eyebrow">THE REAL-TO-SIM-TO-REAL PIPELINE</p><h2>Capture once.<br><em>Let simulation do the work.</em></h2><p>From reconstruction to demonstrations to adaptation,<br class="desktop-break"> one continuous pipeline connects the captured world to robot action.</p></div>
+      </div>
+      <figure class="pipeline-figure reveal"><button class="figure-open" data-figure="assets/images/splat2act-pipeline.webp" data-caption="Splat2Act’s complete real-to-sim-to-real pipeline" aria-label="Enlarge the pipeline figure"><img src="assets/images/splat2act-pipeline.webp" alt="Scene and object captures become Gaussian splats and meshes. Receptacle discovery and task planning feed demonstration generation, broad adaptation, personalization, and real-world deployment." width="2600" height="850" loading="lazy"><span class="figure-zoom"><svg><use href="#icon-expand"/></svg>Explore the pipeline</span></button></figure>
+
+      <div class="chapter container" id="capture">
+        <div class="chapter-heading reveal"><p class="eyebrow"><span class="chapter-index">01</span> CAPTURE &amp; RECONSTRUCTION</p><h3>A familiar space,<br><em>made simulation-ready.</em></h3></div>
+        <div class="capture-layout">
+          <div class="chapter-copy reveal"><p>A 20–30 minute handheld RGB-D scan captures a building-scale environment. Gaussian splats preserve its appearance; an extracted mesh provides the geometry for collision and task planning.</p><div class="representation-key"><span><i class="key-dot blue"></i>3D Gaussian splats<small>Photorealistic observations</small></span><span><i class="key-dot purple"></i>Collision mesh<small>Geometry for interaction</small></span></div><p class="technical-note">DN-Splatter reconstruction · SuGaR mesh extraction</p></div>
+          <figure class="media-frame scan-media reveal" data-video-frame><video muted loop playsinline preload="none" poster="assets/images/scene-scan-poster.webp" aria-label="Handheld scan showing RGB, depth, and normal observations"><source data-src="assets/videos/scene-scan.mp4" type="video/mp4"></video><div class="media-controls"><button class="video-toggle" aria-label="Play scene scan"><svg><use href="#icon-play"/></svg></button><button class="video-expand" aria-label="Expand scene scan"><svg><use href="#icon-expand"/></svg></button></div><figcaption class="media-caption"><span>From a handheld scan</span><small>RGB · depth · normals</small></figcaption><div class="video-progress" aria-hidden="true"></div></figure>
+        </div>
+
+        <div class="object-heading reveal"><div><h4>Your objects, reconstructed.</h4><p>One photo and measured dimensions become a movable 3D asset.</p></div><div class="segmented-control" role="group" aria-label="Object representation"><button data-object-view="photo" aria-pressed="false">Object photo</button><button class="active" data-object-view="model" aria-pressed="true">3D reconstruction</button></div></div>
+        <div class="object-gallery reveal">
+          <figure class="object-item"><div class="object-stage"><img class="object-photo" src="assets/images/rubiks-cube.webp" alt="Photograph of the captured Rubik’s cube" width="600" height="600" loading="lazy" hidden><video class="object-model" muted loop playsinline preload="none" poster="assets/images/object-cube-poster.webp" aria-label="Reconstructed Rubik’s cube rotating in 3D"><source data-src="assets/videos/object-cube.mp4" type="video/mp4"></video><button class="video-toggle object-play" aria-label="Play Rubik’s cube rotation"><svg><use href="#icon-play"/></svg></button></div><figcaption><span>Rubik’s cube</span><small>Personalized object asset</small></figcaption></figure>
+          <figure class="object-item"><div class="object-stage"><img class="object-photo" src="assets/images/soup-can.webp" alt="Photograph of the captured tomato soup can" width="600" height="600" loading="lazy" hidden><video class="object-model" muted loop playsinline preload="none" poster="assets/images/object-soup-poster.webp" aria-label="Reconstructed tomato soup can rotating in 3D"><source data-src="assets/videos/object-soup.mp4" type="video/mp4"></video><button class="video-toggle object-play" aria-label="Play soup can rotation"><svg><use href="#icon-play"/></svg></button></div><figcaption><span>Tomato soup</span><small>Personalized object asset</small></figcaption></figure>
+          <figure class="object-item"><div class="object-stage"><img class="object-photo" src="assets/images/water-bottle.webp" alt="Photograph of the captured water bottle" width="600" height="600" loading="lazy" hidden><video class="object-model" muted loop playsinline preload="none" poster="assets/images/object-bottle-poster.webp" aria-label="Reconstructed water bottle rotating in 3D"><source data-src="assets/videos/object-bottle.mp4" type="video/mp4"></video><button class="video-toggle object-play" aria-label="Play water bottle rotation"><svg><use href="#icon-play"/></svg></button></div><figcaption><span>Water bottle</span><small>Personalized object asset</small></figcaption></figure>
+        </div>
+        <p class="gallery-note">Example assets from the seven-object inventory. Policy personalization is evaluated on pill bottle, Spam, and tomato soup targets.</p>
+      </div>
+
+      <div class="chapter task-chapter container">
+        <div class="task-layout">
+          <figure class="media-frame automation-media reveal" data-video-frame><video muted loop playsinline preload="none" poster="assets/images/automated-pipeline-poster.webp" aria-label="Automated scene processing: navigation, receptacle detection, placeable points, and robot demonstration generation"><source data-src="assets/videos/automated-pipeline.mp4" type="video/mp4"></video><div class="media-controls"><button class="video-toggle" aria-label="Play automated task generation"><svg><use href="#icon-play"/></svg></button><button class="video-expand" aria-label="Expand automated task generation"><svg><use href="#icon-expand"/></svg></button></div><div class="video-progress" aria-hidden="true"></div></figure>
+          <div class="task-copy reveal"><p class="eyebrow"><span class="chapter-index">02</span> AUTOMATED TASK GENERATION</p><h3>A building becomes<br><em>a training ground.</em></h3><p>The pipeline discovers usable surfaces throughout the scene, including non-tabletop receptacles, and constructs feasible pickup tasks.</p><ol class="task-steps"><li><span>01</span><div><h4>Find the navigable space</h4><p>Build a navigation mesh around the robot’s geometry.</p></div></li><li><span>02</span><div><h4>Discover support surfaces</h4><p>Cluster upward-facing geometry into stable, reachable receptacles.</p></div></li><li><span>03</span><div><h4>Assemble feasible tasks</h4><p>Sample object placements, robot poses, and distractors; filter for reachability.</p></div></li><li><span>04</span><div><h4>Generate successful demonstrations</h4><p>A privileged geometric oracle plans, executes, and retries pickup attempts.</p></div></li></ol><span class="process-note">Fully automated after capture</span></div>
+        </div>
+      </div>
+
+      <div class="scale-section">
+        <div class="scale-inner container">
+          <div class="scale-copy reveal"><p class="eyebrow"><span class="chapter-index">03</span> DATA AT SCALE</p><h3>Thousands of demonstrations.<br><em>No teleoperation.</em></h3><p>Across 101 campus environments, Splat2Act generates 68,021 successful pickup trajectories over 852 automatically discovered receptacles.</p><div class="scale-stat"><strong>273.46<span>hours</span></strong><p>of recorded control data<br>from automated simulation</p></div><p class="technical-note">Lounges, kitchens, libraries, offices, and more.<br>Median navigable area: 104.87 m² per scene.</p></div>
+          <figure class="media-frame mosaic-media reveal" data-video-frame><video muted loop playsinline preload="none" poster="assets/images/demonstration-mosaic-poster.webp" aria-label="A mosaic of automatically generated pickup demonstrations across scanned indoor environments"><source data-src="assets/videos/demonstration-mosaic.mp4" type="video/mp4"></video><div class="media-controls"><button class="video-toggle" aria-label="Play demonstration mosaic"><svg><use href="#icon-play"/></svg></button><button class="video-expand" aria-label="Expand demonstration mosaic"><svg><use href="#icon-expand"/></svg></button></div><div class="video-progress" aria-hidden="true"></div></figure>
+        </div>
+      </div>
+
+      <div class="chapter personalization container">
+        <div class="section-intro reveal"><div><p class="eyebrow"><span class="chapter-index">04</span> TWO-STAGE POLICY ADAPTATION</p><h3>Learn the task.<br><em>Then learn your world.</em></h3></div><div class="intro-copy"><p>We fine-tune π<sub>0.5</sub> in two stages: first with diverse public objects, then with captured user objects on the deployment scene’s receptacles.</p><p>Broad adaptation provides experience with the task and embodiment. Personalization grounds that experience in the scene and object inventory that matter at deployment.</p></div></div>
+        <div class="training-flow reveal">
+          <div class="policy-origin"><span class="pi-symbol">π<sub>0.5</sub></span><span>Pretrained VLA</span></div><span class="training-connector" aria-hidden="true"></span>
+          <div class="training-stage broad-stage"><span class="training-label">STAGE 1</span><h4>Broad adaptation</h4><p>1,024 demonstrations<br>Hundreds of public objects</p><div class="training-sources"><span>Office1k</span><span class="source-or">or</span><span>Multi1k</span></div><small>Deployment scene or all 101 scenes</small></div><span class="training-connector" aria-hidden="true"></span>
+          <div class="training-stage personal-stage"><span class="training-label">STAGE 2</span><h4>Personalization</h4><p>500–504 demonstrations<br>Captured objects + target scene</p><div class="personal-tokens"><img src="assets/images/object-soup-poster.webp" alt="" width="44" height="44" loading="lazy"><span>Your object inventory<br>Your scene’s receptacles</span></div><small>Scene-specific supervised fine-tuning</small></div><span class="training-connector" aria-hidden="true"></span>
+          <div class="policy-output"><span class="output-glyph" aria-hidden="true"><i></i><i></i><i></i></span><span>Personalized<br>robot policy</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demos" class="demos section">
+      <div class="container"><div class="section-heading reveal"><p class="eyebrow">ON THE REAL ROBOT</p><h2>Learn in simulation.<br><em>Act in the real world.</em></h2><p>Simulation-trained policies run on Hello Robot Stretch 3,<br class="desktop-break"> using head and wrist RGB, proprioception, and a language prompt.</p></div>
+        <div class="deployment-gallery">
+          <figure class="media-frame deployment-wide reveal" data-video-frame><video muted loop playsinline preload="none" poster="assets/images/real-world-lounge-poster.webp" aria-label="Stretch 3 performs a real-world pickup in the captured lounge"><source data-src="assets/videos/real-world-lounge.mp4" type="video/mp4"></video><div class="media-controls"><button class="video-toggle" aria-label="Play real-world lounge demo"><svg><use href="#icon-play"/></svg></button><button class="video-expand" aria-label="Expand real-world lounge demo"><svg><use href="#icon-expand"/></svg></button></div><figcaption class="media-caption"><span>In the captured environment</span><small>Real-world deployment · Stretch 3</small></figcaption><div class="video-progress" aria-hidden="true"></div></figure>
+        </div>
+        <div class="comparison-section">
+          <div class="comparison-copy reveal"><p class="eyebrow">CLOSING THE LOOP</p><h3>The same world,<br><em>on both sides.</em></h3><p>Gaussian-splat observations preserve the visual character of the deployment scene. The personalized policy transfers from this reconstructed environment to the physical robot.</p><div class="sim-real-stat"><div><strong>66.7<span>%</span></strong><span>Simulation</span></div><span class="stat-divider" aria-hidden="true"></span><div><strong>63.9<span>%</span></strong><span>Real world</span></div></div><p class="technical-note">Office1k + Office personalization<br>Same 12-task subset · 12 simulated episodes · 36 real attempts</p></div>
+          <div class="comparison-videos reveal"><figure class="media-frame" data-video-frame><video muted loop playsinline preload="none" poster="assets/images/comparison-sim-poster.webp" aria-label="A pickup rollout in the Gaussian-splat simulation"><source data-src="assets/videos/comparison-sim.mp4" type="video/mp4"></video><figcaption class="comparison-label">SIMULATION</figcaption><div class="media-controls"><button class="video-toggle" aria-label="Play simulation comparison"><svg><use href="#icon-play"/></svg></button><button class="video-expand" aria-label="Expand simulation comparison"><svg><use href="#icon-expand"/></svg></button></div><div class="video-progress" aria-hidden="true"></div></figure><figure class="media-frame" data-video-frame><video muted loop playsinline preload="none" poster="assets/images/comparison-real-poster.webp" aria-label="A pickup rollout by the real robot in the corresponding environment"><source data-src="assets/videos/comparison-real.mp4" type="video/mp4"></video><figcaption class="comparison-label">REAL WORLD</figcaption><div class="media-controls"><button class="video-toggle" aria-label="Play real-world comparison"><svg><use href="#icon-play"/></svg></button><button class="video-expand" aria-label="Expand real-world comparison"><svg><use href="#icon-expand"/></svg></button></div><div class="video-progress" aria-hidden="true"></div></figure></div>
+        </div>
+        <details class="baseline-details"><summary><span>Before adaptation: the pretrained policy</span><span aria-hidden="true">+</span></summary><div class="baseline-content"><figure class="media-frame" data-video-frame><video muted loop playsinline preload="none" poster="assets/images/base-policy-poster.webp" aria-label="The pretrained pi 0.5 policy fails to complete a pickup in the deployment scene"><source data-src="assets/videos/base-policy.mp4" type="video/mp4"></video><div class="media-controls"><button class="video-toggle" aria-label="Play pretrained policy example"><svg><use href="#icon-play"/></svg></button><button class="video-expand" aria-label="Expand pretrained policy example"><svg><use href="#icon-expand"/></svg></button></div></figure><div><h4>Broad pretraining is a starting point.</h4><p>The pretrained π<sub>0.5</sub> policy scores 0% in both captured task banks, without prior exposure to the Stretch embodiment or this action space. Splat2Act supplies simulation experience for adaptation and scene-specific personalization.</p></div></div></details>
+      </div>
+    </section>
+
+    <section id="results" class="results section container">
+      <div class="section-heading reveal"><p class="eyebrow">WHAT THE EXPERIMENTS SHOW</p><h2>Personalization matters.<br><em>So does where you learn.</em></h2><p>Explore the effects of broad adaptation, scene alignment,<br class="desktop-break"> and the gap between simulation and deployment.</p></div>
+      <div class="results-explorer reveal">
+        <div class="result-tabs" role="tablist" aria-label="Research findings"><button id="tab-adaptation" class="active" role="tab" aria-selected="true" aria-controls="result-panel" data-study="adaptation">Broad adaptation</button><button id="tab-scene" role="tab" aria-selected="false" aria-controls="result-panel" tabindex="-1" data-study="scene">Scene specificity</button><button id="tab-transfer" role="tab" aria-selected="false" aria-controls="result-panel" tabindex="-1" data-study="transfer">Sim-to-real</button><button id="tab-unseen" role="tab" aria-selected="false" aria-controls="result-panel" tabindex="-1" data-study="unseen">Unseen receptacles</button></div>
+        <div id="result-panel" class="result-panel" role="tabpanel" aria-labelledby="tab-adaptation" tabindex="0">
+          <div class="result-chart-wrap"><div class="chart-heading"><div><h3 id="chart-title">Pickup success in Office</h3><p id="chart-subtitle">40 configurations · easy + hard</p></div><label class="scene-select" id="scene-select-label" for="scene-select"><span class="sr-only">Evaluation scene</span><select id="scene-select" aria-label="Evaluation scene"><option value="office">Office</option><option value="conference">Conference</option></select></label></div><div id="chart-legend" class="chart-legend"></div><div id="result-chart" class="result-chart"></div><p id="chart-note" class="chart-note"></p></div>
+          <div class="result-insight"><span class="finding-index" id="finding-index">FINDING 01</span><div class="finding-number" id="finding-number">+17.5<span>pp</span></div><h4 id="finding-title">A better starting point for personalization.</h4><p id="finding-copy">On Office, broad adaptation in the deployment scene followed by personalization reaches 62.5% success — 17.5 percentage points above direct personalization from the pretrained model.</p><p id="finding-caveat" class="finding-caveat">The strongest adaptation source depends on the deployment scene.</p></div>
+        </div>
+        <noscript><p>Office pickup success: pretrained π0.5 0%; direct personalization 45%; Office1k + personalization 62.5%; Multi1k + personalization 47.5%. Full experimental figures are available below and in the paper.</p></noscript>
+      </div>
+      <details class="original-figures"><summary>View the original paper figures<span aria-hidden="true">+</span></summary><div class="paper-figure-grid"><button class="figure-open" data-figure="assets/images/q1_adaptation_stages.webp" data-caption="Broad adaptation and personalization" aria-label="Enlarge adaptation figure"><img src="assets/images/q1_adaptation_stages.webp" alt="Paper figure: adaptation-stage success in Office and Conference" loading="lazy"><span>Broad adaptation</span></button><button class="figure-open" data-figure="assets/images/q2_cross_scene_transfer.webp" data-caption="Cross-scene transfer of personalized policies" aria-label="Enlarge cross-scene figure"><img src="assets/images/q2_cross_scene_transfer.webp" alt="Paper figure: cross-scene personalized-policy success" loading="lazy"><span>Scene specificity</span></button><button class="figure-open" data-figure="assets/images/q3_office_sim_real.webp" data-caption="Office sim-to-real evaluation on 12 tasks" aria-label="Enlarge sim-to-real figure"><img src="assets/images/q3_office_sim_real.webp" alt="Paper figure: simulation versus real success and aggregate policy scatter" loading="lazy"><span>Sim-to-real transfer</span></button><button class="figure-open" data-figure="assets/images/q4_unseen_supports.webp" data-caption="Generalization to unseen lab receptacles" aria-label="Enlarge unseen receptacles figure"><img src="assets/images/q4_unseen_supports.webp" alt="Paper figure: transfer success on black and yellow tables in an unseen lab" loading="lazy"><span>Unseen receptacles</span></button></div></details>
+      <div class="scope-note reveal"><span class="scope-icon" aria-hidden="true">↳</span><div><h4>Personalization is local.</h4><p>These experiments study receptacle-local pickup. Success drops substantially on unseen lab tables, reinforcing the value of adapting to the actual deployment scene. Longer-horizon mobile manipulation remains a direction for future work.</p></div></div>
+    </section>
+
+    <section id="citation" class="citation section">
+      <div class="container citation-layout"><div class="citation-copy reveal"><p class="eyebrow">THE PAPER</p><h2>From captured scenes<br><em>to personalized action.</em></h2><p>Splat2Act: From Captured Scenes to<br>Personalized VLA Manipulation</p><button class="button button-dark" type="button" disabled><svg><use href="#icon-paper"/></svg>Paper (coming soon)</button><p class="release-note">Dataset release is planned upon acceptance.</p></div><div class="citation-code reveal"><div class="citation-toolbar"><span>BibTeX</span><button id="copy-citation"><svg><use href="#icon-copy"/></svg><span>Copy citation</span></button></div><pre id="bibtex">@misc{ye2026splat2act,
+  title = {Splat2Act: From Captured Scenes to
+           Personalized VLA Manipulation},
+  author = {Ye, Xiaomeng and Jaganathan, Krishna
+            and Lim, Gyubeum and Chhablani, Gunjan
+            and Irshad, Muhammad Zubair and Kira, Zsolt},
+  year = {2026}
+}</pre><a class="bib-download" href="assets/paper/splat2act.bib" download><svg><use href="#icon-download"/></svg>Download .bib</a><span id="copy-status" class="sr-only" role="status"></span></div></div>
+    </section>
+  </main>
+  <footer class="site-footer container"><a class="wordmark" href="#top">Splat<span>2</span>Act</a><p>From your world. For your world.</p><a href="#top" class="back-top">Back to top</a></footer>
+  <dialog id="media-dialog" aria-label="Expanded media"><div class="dialog-header"><span id="dialog-caption"></span><button id="close-dialog" aria-label="Close expanded media"><svg><use href="#icon-close"/></svg></button></div><div id="dialog-content"></div></dialog>
+</body>
+</html>

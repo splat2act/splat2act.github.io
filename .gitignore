@@ -1,0 +1,38 @@
+# macOS metadata
+.DS_Store
+._*
+__MACOSX/
+
+# Local dependencies and Python caches
+.venv/
+venv/
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# LaTeX build intermediates; source PDFs and media stay versioned
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
