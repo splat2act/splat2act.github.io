@@ -32,3 +32,53 @@ html.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubi
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}html.js .reveal{opacity:1;transform:none}.chart-bar{transform:scaleX(1)}#splat-field{display:none}}
 
 .button:disabled{cursor:default;opacity:.65;pointer-events:none}
+
+/* Keep the visually hidden results table within the chart's clipping context. */
+.result-chart{position:relative}
+
+/* Paper release and the distinction between collected data and candidate scale. */
+.release-resources{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 20px;margin:18px auto 0;padding-inline:20px}
+.resource-placeholder{display:inline-flex;align-items:center;gap:8px;padding:7px 0;color:var(--muted);font-size:12px;line-height:1.5}
+.resource-placeholder svg{width:16px;height:16px}
+.release-badge{padding:3px 7px;border:1px solid var(--line);border-radius:5px;color:var(--purple-deep);font-size:10px;white-space:nowrap}
+.scaling-preview{margin-top:20px;color:var(--muted);font-size:14px;text-align:center}
+.scaling-preview a,.paper-section-link{color:var(--purple-deep);text-decoration:underline;text-decoration-color:#b3b4d0;text-underline-offset:4px}
+.scaling-preview a{display:inline-block;margin-left:6px}
+.scaling-preview a:hover,.paper-section-link:hover{color:var(--ink);text-decoration-color:currentColor}
+.scale-potential{margin-top:45px;padding:30px 34px;border:1px solid #ccd4e6;border-radius:18px;background:#ffffff70}
+.scale-potential-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.scale-potential-heading h4{font-size:21px;font-weight:550}
+.paper-section-link{flex-shrink:0;font-size:13px}
+.scale-equations{display:grid;grid-template-columns:1fr 1fr;margin-top:28px}
+.scale-equation{min-width:0;padding-right:32px}
+.scale-equation+.scale-equation{border-left:1px solid var(--line);padding-left:40px;padding-right:0}
+.scale-expression{font-size:15px;color:var(--muted)}
+.scale-expression>span{padding-inline:7px;color:var(--purple)}
+.scale-equation>strong{display:block;margin-top:13px;font-family:var(--heading);font-size:clamp(38px,4.5vw,60px);font-weight:500;letter-spacing:-.05em;line-height:1.2}
+.scale-equation+.scale-equation>strong{color:var(--purple-deep)}
+.scale-result-label{display:block;margin-top:8px;font-size:14px}
+.scale-assumption{margin-top:7px;font-size:12px;color:var(--muted)}
+.scale-projection-note{border-top:1px solid var(--line);padding-top:21px;margin-top:25px;font-size:13px;line-height:1.8;color:var(--muted)}
+@media(max-width:800px){
+  .desktop-nav{gap:16px}
+  .scale-potential{padding:26px}
+  .scale-potential-heading h4{font-size:19px}
+  .scale-expression{font-size:13px}
+  .scale-equation{padding-right:22px}
+  .scale-equation+.scale-equation{padding-left:26px}
+}
+@media(max-width:600px){
+  .release-resources{gap:0 16px;margin-top:15px}
+  .resource-placeholder{font-size:11px}
+  .release-badge{font-size:9px}
+  .scaling-preview{font-size:13px;line-height:1.8}
+  .scaling-preview a{margin-left:0}
+  .scale-potential{margin-top:30px;padding:24px}
+  .scale-potential-heading{align-items:start;flex-direction:column;gap:10px}
+  .scale-equations{grid-template-columns:1fr;gap:24px;margin-top:26px}
+  .scale-equation{padding-right:0}
+  .scale-equation+.scale-equation{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}
+  .scale-equation>strong{font-size:44px}
+  .scale-result-label{font-size:14px}
+  .scale-assumption,.scale-projection-note{font-size:12px}
+}

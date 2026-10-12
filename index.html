@@ -13,13 +13,15 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preload" href="assets/fonts/manrope.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/dm-sans.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=arxiv-2610-13945">
   <script src="script.js?v=bc73424692ca" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#overview">Skip to the research</a>
   <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
     <symbol id="icon-paper" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h5"/></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></symbol>
+    <symbol id="icon-dataset" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
     <symbol id="icon-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7z"/></symbol>
     <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
     <symbol id="icon-expand" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5"/></symbol>
@@ -33,11 +35,11 @@
     <div class="header-inner">
       <a class="wordmark" href="#top" aria-label="Splat2Act home"><span class="splat-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Splat<span>2</span>Act</a>
       <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="#overview">Overview</a><a href="#method">Method</a><a href="#demos">Demos</a><a href="#results">Results</a>
+        <a href="#overview">Overview</a><a href="#method">Method</a><a href="#scaling">Scaling</a><a href="#demos">Demos</a><a href="#results">Results</a><a href="#citation">Paper</a>
       </nav>
       <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
     </div>
-    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#overview">Overview</a><a href="#method">Method</a><a href="#demos">Demos</a><a href="#results">Results</a><a href="#citation">Citation</a></nav>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#overview">Overview</a><a href="#method">Method</a><a href="#scaling">Scaling</a><a href="#demos">Demos</a><a href="#results">Results</a><a href="#citation">Paper &amp; citation</a></nav>
     <div class="reading-progress" aria-hidden="true"></div>
   </header>
 
@@ -56,8 +58,13 @@
           <a href="https://www.tri.global/" target="_blank" rel="noopener" aria-label="Affiliation 3: Toyota Research Institute"><sup>3</sup><img class="tri-logo" src="assets/logos/toyota-research-institute.svg" alt="Toyota Research Institute" width="150" height="49"></a>
         </div>
         <div class="hero-actions">
-          <button class="button button-dark" type="button" disabled><svg><use href="#icon-paper"/></svg>Paper (coming soon)</button>
+          <a class="button button-dark" href="https://arxiv.org/abs/2610.13945" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#icon-paper"/></svg>Read the paper</a>
           <a class="button button-light" href="#demos"><svg><use href="#icon-play"/></svg>See it in action</a>
+        </div>
+        <div class="release-resources" role="group" aria-label="Upcoming releases">
+          <!-- Replace these disabled placeholders with project links when the releases are public. -->
+          <button class="resource-placeholder" type="button" disabled><svg aria-hidden="true"><use href="#icon-code"/></svg><span>Code on GitHub</span><span class="release-badge">Coming soon</span></button>
+          <button class="resource-placeholder" type="button" disabled><svg aria-hidden="true"><use href="#icon-dataset"/></svg><span>Dataset on Hugging Face</span><span class="release-badge">Coming soon</span></button>
         </div>
       </div>
       <figure class="hero-teaser">
@@ -81,9 +88,10 @@
       <div class="metrics reveal">
         <div><span class="metric-value">101</span><span class="metric-label">captured indoor scenes</span><span class="metric-note">Building-scale environments</span></div>
         <div><span class="metric-value">852</span><span class="metric-label">discovered receptacles</span><span class="metric-note">Tables, shelves, and beyond</span></div>
-        <div><span class="metric-value">68,021</span><span class="metric-label">pickup demonstrations</span><span class="metric-note">Generated automatically</span></div>
+        <div><span class="metric-value">68,021</span><span class="metric-label">demonstrations collected</span><span class="metric-note">Storage-limited sample</span></div>
         <div><span class="metric-value accent">63.9<span>%</span></span><span class="metric-label">real-world pickup success</span><span class="metric-note">Office · 12 tasks, 36 attempts</span></div>
       </div>
+      <p class="scaling-preview">A sampled corpus within a much larger task space. <a href="#scaling">Explore the scaling potential <span aria-hidden="true">↗</span></a></p>
       <details class="abstract-details"><summary>Read the abstract<span aria-hidden="true">+</span></summary><div><p>A user who brings a generalist manipulation policy into their home or office wants it to pick up their objects from their shelves, counters, and tables. Yet even a strong generalist like π<sub>0.5</sub> achieves 0% pickup success in our captured deployment scenes without adaptation, and collecting real demonstrations in every user's environment is prohibitively expensive. We present Splat2Act, an automated real-to-sim-to-real pipeline that personalizes a pretrained vision-language-action (VLA) policy to a specific scene and object set using only a handheld phone scan and images of the user's objects. Unlike prior real-to-sim work that reconstructs individual tabletops, Splat2Act operates on building-scale indoor environments: it builds a photorealistic digital twin with 3D Gaussian Splatting and collision geometry, automatically discovers tabletop and non-tabletop receptacles, constructs feasible pickup tasks, and generates successful demonstrations with a privileged simulation oracle, with only scene and object capture required from a human. Applied to 101 scanned campus environments with a median navigable area of 104.87 m² and 7 receptacles, the pipeline yields 852 receptacles and over 68,000 pickup demonstrations. We fine-tune π<sub>0.5</sub> in two stages: Stage 1 adapts to hundreds of public object assets, drawn either from the deployment scene alone or from all 101 scenes; Stage 2 personalizes to the user's own objects on the deployment scene's receptacles. Our strongest personalized policy reaches 62.5% aggregate pickup success in the target scene. Deployed on a real Stretch 3, the same policy achieves 63.9% success on a 12-task subset, closely tracking its 66.7% simulated success on those tasks. We find that Splat2Act is able to adapt to the target scene and objects from only simulation oracle data, suggesting an alternative way for personalizing VLA manipulation training using an automated real-to-sim-to-real approach.</p></div></details>
     </section>
 
@@ -116,12 +124,20 @@
         </div>
       </div>
 
-      <div class="scale-section">
+      <section class="scale-section" id="scaling" aria-labelledby="scaling-title">
         <div class="scale-inner container">
-          <div class="scale-copy reveal"><p class="eyebrow"><span class="chapter-index">03</span> DATA AT SCALE</p><h3>Thousands of demonstrations.<br><em>No teleoperation.</em></h3><p>Across 101 campus environments, Splat2Act generates 68,021 successful pickup trajectories over 852 automatically discovered receptacles.</p><div class="scale-stat"><strong>273.46<span>hours</span></strong><p>of recorded control data<br>from automated simulation</p></div><p class="technical-note">Lounges, kitchens, libraries, offices, and more.<br>Median navigable area: 104.87 m² per scene.</p></div>
+          <div class="scale-copy reveal"><p class="eyebrow"><span class="chapter-index">03</span> DATA &amp; SCALING POTENTIAL</p><h3 id="scaling-title">68K demonstrations collected.<br><em>Millions of candidate tasks.</em></h3><p>Our broad campaigns collected <strong>68,021 successful pickup demonstrations</strong> across 101 scenes. Storage constraints led us to subsample the multi-scene campaign by approximately <strong>100×</strong>.</p><div class="scale-stat"><strong>273.46<span>hours collected</span></strong><p>Recorded control data.<br>Fully automated, without teleoperation.</p></div><p class="technical-note">The same scene and object assets can generate further tasks by varying object placement, robot starting pose, and distractors.</p></div>
           <figure class="media-frame mosaic-media reveal" data-video-frame><video muted loop playsinline preload="none" poster="assets/images/demonstration-mosaic-poster.webp" aria-label="A mosaic of automatically generated pickup demonstrations across scanned indoor environments"><source data-src="assets/videos/demonstration-mosaic.mp4" type="video/mp4"></video><div class="media-controls"><button class="video-toggle" aria-label="Play demonstration mosaic"><svg><use href="#icon-play"/></svg></button><button class="video-expand" aria-label="Expand demonstration mosaic"><svg><use href="#icon-expand"/></svg></button></div><div class="video-progress" aria-hidden="true"></div></figure>
         </div>
-      </div>
+        <div class="scale-potential container reveal">
+          <div class="scale-potential-heading"><h4>Recombine assets. Vary configurations.</h4><a class="paper-section-link" href="https://arxiv.org/html/2610.13945v1#S4.SS1" target="_blank" rel="noopener">Paper § IV-A <span aria-hidden="true">↗</span></a></div>
+          <div class="scale-equations">
+            <div class="scale-equation"><p class="scale-expression">852 receptacles <span>×</span> 556 object assets</p><strong>473,712</strong><span class="scale-result-label">candidate object–receptacle pairs</span><p class="scale-assumption">Before feasibility filtering</p></div>
+            <div class="scale-equation"><p class="scale-expression">473,712 pairs <span>×</span> 24 configurations</p><strong>≈11.4M</strong><span class="scale-result-label">candidate tasks in an illustrative expansion</span><p class="scale-assumption">24 configurations per pair is an example, not a limit.</p></div>
+          </div>
+          <p class="scale-projection-note">At the observed average trajectory duration, this expansion would correspond to approximately <strong>45,700 demonstration hours</strong> if every configuration were feasible and successful. These figures describe potential scale; actual collection requires feasibility filtering and successful oracle execution.</p>
+        </div>
+      </section>
 
       <div class="chapter personalization container">
         <div class="section-intro reveal"><div><p class="eyebrow"><span class="chapter-index">04</span> TWO-STAGE POLICY ADAPTATION</p><h3>Learn the task.<br><em>Then learn your world.</em></h3></div><div class="intro-copy"><p>We fine-tune π<sub>0.5</sub> in two stages: first with diverse public objects, then with captured user objects on the deployment scene’s receptacles.</p><p>Broad adaptation provides experience with the task and embodiment. Personalization grounds that experience in the scene and object inventory that matter at deployment.</p></div></div>
@@ -162,13 +178,17 @@
     </section>
 
     <section id="citation" class="citation section">
-      <div class="container citation-layout"><div class="citation-copy reveal"><p class="eyebrow">THE PAPER</p><h2>From captured scenes<br><em>to personalized action.</em></h2><p>Splat2Act: From Captured Scenes to<br>Personalized VLA Manipulation</p><button class="button button-dark" type="button" disabled><svg><use href="#icon-paper"/></svg>Paper (coming soon)</button><p class="release-note">Dataset release is planned upon acceptance.</p></div><div class="citation-code reveal"><div class="citation-toolbar"><span>BibTeX</span><button id="copy-citation"><svg><use href="#icon-copy"/></svg><span>Copy citation</span></button></div><pre id="bibtex">@misc{ye2026splat2act,
+      <div class="container citation-layout"><div class="citation-copy reveal"><p class="eyebrow">THE PAPER · ARXIV 2026</p><h2>From captured scenes<br><em>to personalized action.</em></h2><p>Splat2Act: From Captured Scenes to<br>Personalized VLA Manipulation</p><a class="button button-dark" href="https://arxiv.org/abs/2610.13945" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#icon-paper"/></svg>Read on arXiv</a><p class="release-note">Code on GitHub and dataset on Hugging Face: coming soon.</p></div><div class="citation-code reveal"><div class="citation-toolbar"><span>BibTeX</span><button id="copy-citation"><svg><use href="#icon-copy"/></svg><span>Copy citation</span></button></div><pre id="bibtex">@misc{ye2026splat2act,
   title = {Splat2Act: From Captured Scenes to
            Personalized VLA Manipulation},
   author = {Ye, Xiaomeng and Jaganathan, Krishna
             and Lim, Gyubeum and Chhablani, Gunjan
             and Irshad, Muhammad Zubair and Kira, Zsolt},
-  year = {2026}
+  year = {2026},
+  eprint = {2610.13945},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  url = {https://arxiv.org/abs/2610.13945}
 }</pre><a class="bib-download" href="assets/paper/splat2act.bib" download><svg><use href="#icon-download"/></svg>Download .bib</a><span id="copy-status" class="sr-only" role="status"></span></div></div>
     </section>
   </main>
